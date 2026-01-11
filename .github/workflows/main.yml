@@ -23,7 +23,19 @@ jobs:
           fetch-depth: 0
 
       - name: Show workspace
-        run: echo $GITHUB_WORKSPACE    
+        run: echo $GITHUB_WORKSPACE
+
+      - name: Show $GITHUB_REF
+        run: echo $GITHUB_REF
+
+      - name: Show $GITHUB_SHA
+        run: echo $GITHUB_SHA
+
+      - name: Show $GITHUB_REPOSITORY
+        run: echo $GITHUB_REPOSITORY
+
+      - name: Show $RUNNER_TEMP
+        run: echo $RUNNER_TEMP          
 
       - name: Maven install
         run: mvn install   

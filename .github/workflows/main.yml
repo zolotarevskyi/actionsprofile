@@ -22,6 +22,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - run: env
+      
       - name: Show workspace
         run: echo $GITHUB_WORKSPACE
 

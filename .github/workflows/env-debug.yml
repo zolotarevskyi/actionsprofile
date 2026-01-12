@@ -1,0 +1,26 @@
+name: Debug GITHUB_ENV
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-env:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: BEFORE writing to GITHUB_ENV
+        run: |
+          echo "--- BEFORE ---"
+          cat $GITHUB_ENV || echo "(file does not exist yet)"
+
+      - name: Write variable
+        run: |
+          echo "APP_VER=9.0.1" >> $GITHUB_ENV
+          echo "--- AFTER WRITING ---"
+          cat $GITHUB_ENV
+
+      - name: Confirm variable exists in env
+        run: |
+          echo "--- ENVIRONMENT VARIABLE ---"
+          echo "APP_VER = $APP_VER"

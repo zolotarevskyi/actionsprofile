@@ -1,0 +1,25 @@
+name: Build WF
+on: 
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  Info:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Code checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - run: env
+      
+      - name: Show workspace
+        run: echo $GITHUB_WORKSPACE

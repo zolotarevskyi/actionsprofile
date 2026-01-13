@@ -57,3 +57,27 @@ jobs:
       - name: Checkstyle
         run: mvn checkstyle:checkstyle   
 
+  Security_Scan:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps: 
+      - name: Code checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: json
+          exit-code: 0
+          vul-type: os, library
+          output: trivy-results.json
+
+      - name: Upload Trivy scan results as artifact
+        uses: actions/checkout@v4
+        with:
+          name: trivy-results
+          path: trivy-results.json    
